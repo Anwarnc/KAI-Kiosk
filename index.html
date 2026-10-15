@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAIKiosk - Pemesanan Tiket Kereta</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <div class="logo-icon">K</div>
+            <div>
+                <h2>KAIKiosk</h2>
+                <p>TIKET KERETA MANDIRI</p>
+            </div>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Layanan Mandiri
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <div>
+                <p class="eyebrow">PERJALANAN DIMULAI DI SINI</p>
+                <h1>Halo, selamat datang! 👋</h1>
+                <p>Pesan tiket kereta dengan mudah, cepat, dan nyaman.</p>
+            </div>
+            <div class="train-illustration">🚆</div>
+        </section>
+
+        <section class="booking-card">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">PEMESANAN TIKET</p>
+                    <h2>Mau pergi ke mana?</h2>
+                </div>
+                <span class="badge">Langkah 1 dari 3</span>
+            </div>
+
+            <form id="booking-form">
+
+                <div class="route-fields">
+                    <div class="form-group">
+                        <label for="origin">Stasiun keberangkatan</label>
+                        <select id="origin" required>
+                            <option value="Jakarta Gambir">Jakarta Gambir</option>
+                            <option value="Pasar Senen">Pasar Senen</option>
+                            <option value="Bandung">Bandung</option>
+                            <option value="Yogyakarta">Yogyakarta</option>
+                            <option value="Surabaya Gubeng">Surabaya Gubeng</option>
+                            <option value="Cirebon">Cirebon</option>
+                        </select>
+                    </div>
+
+                    <button type="button" id="swap-button" class="swap-button"
+                        aria-label="Tukar stasiun asal dan tujuan">⇄</button>
+
+                    <div class="form-group">
+                        <label for="destination">Stasiun tujuan</label>
+                        <select id="destination" required>
+                            <option value="Bandung">Bandung</option>
+                            <option value="Yogyakarta">Yogyakarta</option>
+                            <option value="Surabaya Gubeng">Surabaya Gubeng</option>
+                            <option value="Cirebon">Cirebon</option>
+                            <option value="Jakarta Gambir">Jakarta Gambir</option>
+                            <option value="Pasar Senen">Pasar Senen</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="travel-date">Tanggal keberangkatan</label>
+                        <input type="date" id="travel-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passengers">Jumlah penumpang</label>
+                        <select id="passengers">
+                            <option value="1">1 penumpang</option>
+                            <option value="2">2 penumpang</option>
+                            <option value="3">3 penumpang</option>
+                            <option value="4">4 penumpang</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="notice">
+                    <span>ⓘ</span>
+                    Pastikan stasiun asal, tujuan, dan tanggal sudah benar.
+                </div>
+
+                <button type="submit" class="primary-button">
+                    Cari Jadwal Kereta <span>→</span>
+                </button>
+
+            </form>
+        </section>
+
+        <section id="schedule-section" class="booking-card hidden">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">LANGKAH 2 DARI 3</p>
+                    <h2>Pilih jadwal kereta</h2>
+                </div>
+            </div>
+
+            <div id="journey-summary" class="journey-summary"></div>
+            <div id="train-list" class="train-list"></div>
+
+            <div class="button-row">
+                <button type="button" id="back-to-form" class="secondary-button">
+                    ← Kembali
+                </button>
+                <button type="button" id="continue-to-passenger" class="primary-button">
+                    Lanjutkan →
+                </button>
+            </div>
+        </section>
+
+        <section id="passenger-section" class="booking-card hidden">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">LANGKAH 3 DARI 3</p>
+                    <h2>Data pemesan dan konfirmasi</h2>
+                </div>
+            </div>
+
+            <div id="selected-journey" class="journey-summary"></div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="passenger-name">Nama lengkap</label>
+                    <input type="text" id="passenger-name"
+                        placeholder="Contoh: Anwar Pratama">
+                </div>
+
+                <div class="form-group">
+                    <label for="identity-number">Nomor identitas simulasi</label>
+                    <input type="text" id="identity-number"
+                        placeholder="Masukkan nomor identitas">
+                </div>
+            </div>
+
+            <div class="notice">
+                🔒 Prototype untuk tugas kuliah. Gunakan data fiktif saat demonstrasi.
+            </div>
+
+            <div class="button-row">
+                <button type="button" id="back-to-schedule" class="secondary-button">
+                    ← Kembali
+                </button>
+                <button type="button" id="review-booking" class="primary-button">
+                    Periksa Pesanan →
+                </button>
+            </div>
+
+            <div id="confirmation-section" class="confirmation-section hidden">
+                <h3>Periksa kembali pesanan</h3>
+                <div id="confirmation-details"></div>
+
+                <label class="confirm-label">
+                    <input type="checkbox" id="confirm-checkbox">
+                    Saya sudah memeriksa dan memastikan detail pesanan benar.
+                </label>
+
+                <button type="button" id="create-ticket" class="primary-button">
+                    Buat Tiket Simulasi ✓
+                </button>
+            </div>
+        </section>
+
+        <section id="ticket-section" class="booking-card hidden">
+            <div class="success-heading">
+                <div class="success-icon">✓</div>
+                <h2>Tiket simulasi berhasil dibuat!</h2>
+                <p>Tiket ini hanya untuk demonstrasi, bukan tiket perjalanan resmi.</p>
+            </div>
+
+            <div id="ticket-content" class="ticket-content"></div>
+
+            <div class="button-row">
+                <button type="button" id="print-ticket" class="primary-button">
+                    Cetak / Simpan PDF
+                </button>
+                <button type="button" id="new-booking" class="secondary-button">
+                    Pesan Tiket Baru
+                </button>
+            </div>
+        </section>
+
+        <p id="message" class="message hidden" role="status"></p>
+
+        <footer>
+            KAIKiosk © 2026 — Prototype Rekayasa Perangkat Lunak
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
